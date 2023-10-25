@@ -24,7 +24,7 @@ jobs:
         # applications does our runner has on github runners informations section
       - name: Install NodeJs
         uses: actions/setup-node@v3
-        using with keyword to provide extra configurations for our action
+        # using with keyword to provide extra configurations for our action
         with:
           node-version: 18
       - name: Install dependencies
