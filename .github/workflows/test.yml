@@ -1,47 +1,30 @@
 # name of the workflow
-# name: Test Project
+name: Test Project
 # event we want to trigger this workflow - more events can be found in here(https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows)
 # this workflow will run run whenever we push in the repo
-# on: push
-# jobs:
-#   this is name of job it can be anything
-#   test:
-#     here we are defining the runner i.e where(on which machine) we will be executing our jobs.
-#     depending on runner steps can varry i.e for our runner though we don't need to install node js as its already there. but
-#     if we choose some runner where there is no node js then in that case we have to add extra step to install node also we
-#     can specify the version of node if our runner has a different version
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Get code
-#       action(not github actions) are custom application that can perform a typically complex frequently repleated task
-#       we can use the actions by using "use" keyword.. below we are using checkout action which will checkout into the repo
-#       and get the code. actions also takes with keyword which provide extra configurations to action i.e in which repo we want to checkout
-#       but here we dont need to do that as by default it will checkout to repo with which this work flow is associated
-#       more about the bellow actions can be found here(https://github.com/actions/checkout)
-#       there are multiple pre created actions that you can use.
-#       - uses: actions/checkout@v3
-#       just for knowledge purpose we are installing node (though our runner already has it we dont need to install) we can see what are pre installed
-#       applications does our runner has on github runners informations section
-#       - name: Install NodeJs
-#       - uses: actions/setup-node@v3
-#         using with keyword to provide extra configurations for our action
-#         with:
-#           node-version: 18
-#       - name: Install dependencies
-#         run: npm ci
-#       - name: Run tests
-#         run: npm run tests
-
-name: Test Project
 on: push
 jobs:
+  # this is name of job it can be anything
   test:
+    # here we are defining the runner i.e where(on which machine) we will be executing our jobs.
+    # depending on runner steps can varry i.e for our runner though we don't need to install node js as its already there. but
+    # if we choose some runner where there is no node js then in that case we have to add extra step to install node also we
+    # can specify the version of node if our runner has a different version
     runs-on: ubuntu-latest
     steps:
       - name: Get code
-      - uses: actions/checkout@v3
+        # action(not github actions) are custom application that can perform a typically complex frequently repleated task
+        # we can use the actions by using "use" keyword.. below we are using checkout action which will checkout into the repo
+        # and get the code. actions also takes with keyword which provide extra configurations to action i.e in which repo we want to checkout
+        # but here we dont need to do that as by default it will checkout to repo with which this work flow is associated
+        # more about the bellow actions can be found here(https://github.com/actions/checkout)
+        # there are multiple pre created actions that you can use.
+        uses: actions/checkout@v3
+        # just for knowledge purpose we are installing node (though our runner already has it we dont need to install) we can see what are pre installed
+        # applications does our runner has on github runners informations section
       - name: Install NodeJs
-      - uses: actions/setup-node@v3
+        uses: actions/setup-node@v3
+        using with keyword to provide extra configurations for our action
         with:
           node-version: 18
       - name: Install dependencies
