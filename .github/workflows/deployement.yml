@@ -2,7 +2,7 @@
 name: Test Project
 # event we want to trigger this workflow - more events can be found in here(https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows)
 # this workflow will run run whenever we push in the repo
-on: push
+on: push # we can add multiple trigger events like-> on: [push,workflow_dispatch]
 jobs:
   # this is name of job it can be anything
   test:
@@ -31,8 +31,10 @@ jobs:
         run: npm ci
       - name: Run tests
         run: npm run test
-  # above defined test as well as bellow defined deploy both will rin in parellel
+  # above defined test(job) as well as bellow defined deploy both will rin in parellel
   deploy:
+    # needs: [test,someOtherJob] adding needs will make it sequential i.e only if test job is successfull after that deploy will run
+    # if we have only one job we can add it like -> needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Get code

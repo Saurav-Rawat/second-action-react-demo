@@ -1,0 +1,10 @@
+name: Output Information
+on: workflow_dispatch
+jobs:
+  info:
+    runs-on: unbuntu-latest
+    steps:
+      - name: Output Guthub context
+        # bellow line of code will help us in seeing the content of github context eg: github.repository will give us information
+        # of the current repo in which we are in
+        run: echo "${{ toJSON(github) }}"
